@@ -1,0 +1,38 @@
+import matplotlib.pyplot as plt
+
+def plot_loss(train_losses, val_losses):
+    epochs = range(1, len(train_losses) + 1)
+
+    # 绘制 Loss 图
+    plt.figure(figsize=(8, 6))
+    plt.plot(epochs, train_losses, label='Training Loss', color='blue', linestyle='-')
+    plt.plot(epochs, val_losses, label='Validation Loss', color='orange', linestyle='--')
+    plt.title('Loss per Epochs')
+    plt.xlabel('Epochs')
+    plt.ylabel('Loss')
+    plt.legend()
+    
+    # 保存图像
+    plt.savefig('loss.png')
+    plt.show()
+
+def plot_accuracy(train_accuracies, val_accuracies):
+    epochs = range(1, len(train_accuracies) + 1)
+
+    # 绘制 Accuracy 图
+    plt.figure(figsize=(8, 6))
+    plt.plot(epochs, train_accuracies, label='Training Accuracy', color='green', linestyle='-')
+    plt.plot(epochs, val_accuracies, label='Validation Accuracy', color='red', linestyle='--')
+    plt.title('Accuracy per Epochs')
+    plt.xlabel('Epochs')
+    plt.ylabel('Accuracy')
+    plt.legend()
+    
+    # 保存图像
+    plt.savefig('accuracy.png')
+    plt.show()
+
+# 在训练完成后调用绘图函数
+plot_loss(train_losses, val_losses)
+plot_accuracy(train_accuracies, val_accuracies)
+
