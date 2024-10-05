@@ -1,0 +1,43 @@
+import matplotlib.pyplot as plt
+
+def plot_other_metrics(metrics_history, train_times, test_times):
+    epochs = range(1, len(metrics_history['recall']) + 1)
+
+    plt.figure(figsize=(12, 8))
+
+    # Highlighting Recall
+    plt.plot(epochs, metrics_history['recall'], label='Recall', color='red', linestyle='-', marker='o', linewidth=3, markersize=8)
+
+    # Plotting other metrics
+    plt.plot(epochs, metrics_history['precision'], label='Precision', linestyle='--', marker='x', color='gray')
+    plt.plot(epochs, metrics_history['f1'], label='F1 Score', linestyle=':', marker='d', color='blue')
+    plt.plot(epochs, metrics_history['roc_auc'], label='ROC AUC', linestyle='-.', marker='v', color='green')
+    plt.plot(epochs, metrics_history['balanced_accuracy'], label='Balanced Accuracy', linestyle='--', marker='^', color='orange')
+
+    plt.title('Model Other Metrics Over Epochs')
+    plt.xlabel('Epochs')
+    plt.ylabel('Score')
+    plt.legend(loc='best')
+
+    # 保存图像
+    plt.tight_layout()
+    plt.savefig('model_other_metrics_highlighted_recall.png')
+    plt.show()
+
+
+    # 绘制训练时间和测试时间
+    plt.figure(figsize=(6, 4))
+    plt.plot(epochs, train_times, label='Train Time')
+    plt.plot(epochs, test_times, label='Test Time')
+    plt.title('Train and Test Time Over Epochs')
+    plt.xlabel('Epochs')
+    plt.ylabel('Time (seconds)')
+    plt.legend()
+
+    # 保存时间图像
+    plt.tight_layout()
+    plt.savefig('train_test_time.png')
+    plt.show()
+
+# 调用绘图函数
+plot_metrics(metrics_history, train_times, test_times)
